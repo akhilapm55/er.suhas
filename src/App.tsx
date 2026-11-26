@@ -18,8 +18,36 @@ gsap.registerPlugin(ScrollTrigger);
 function ScrollAndLenisManager() {
   const { pathname, hash } = useLocation();
 
+  // useEffect(() => {
+  //   if (prefersReducedMotion()) return;
+
+  //   const lenis = new Lenis({
+  //     duration: 1.05,
+  //     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  //     smoothWheel: true,
+  //   });
+
+  //   lenis.on('scroll', ScrollTrigger.update);
+
+  //   const tick = (time: number) => {
+  //     lenis.raf(time * 1000);
+  //   };
+  //   gsap.ticker.add(tick);
+  //   gsap.ticker.lagSmoothing(0);
+
+  //   return () => {
+  //     gsap.ticker.remove(tick);
+  //     lenis.destroy();
+  //   };
+  // }, []);
   useEffect(() => {
-    if (prefersReducedMotion()) return;
+    // Use native scrolling on mobile and when reduced motion is enabled
+    if (
+      prefersReducedMotion() ||
+      window.matchMedia("(pointer: coarse)").matches
+    ) {
+      return;
+    }
 
     const lenis = new Lenis({
       duration: 1.05,
@@ -32,6 +60,7 @@ function ScrollAndLenisManager() {
     const tick = (time: number) => {
       lenis.raf(time * 1000);
     };
+
     gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
 
