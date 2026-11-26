@@ -34,7 +34,7 @@ useEffect(() => {
     <div className={`preloader ${exiting ? "preloader-exit" : ""}`}>
       <div className="preloader-content">
         <div className="preloader-label">
-          PORTFOLIO
+          Managing Partner & EV Infra Projects Engineer
         </div>
 
         <h1 className="preloader-name">
@@ -54,7 +54,7 @@ useEffect(() => {
         </div>
 
         <div className="preloader-bottom">
-          <span>DESIGN · DEVELOP · CREATE</span>
+          <span>PLAN · DESIGN · ENGINEER</span>
           <span>2026</span>
         </div>
       </div>
